@@ -1,0 +1,31 @@
+
+
+<div class="banner" id='home'>
+  <div class="banner-content">
+  <h1>Find your Cocktail</h1>
+  <h2>  <form action="search">
+      <input type="" id="search" name="tag" placeholder="Search..">
+  </form></h2>
+  </div>
+  <div class="banner-gradient"></div>
+</div>
+<div class="container">
+  <div class="row">
+    <h1>Find your Cocktail</h1>
+    <% @cocktails.each do |cocktail| %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card <%=cocktail.name.gsub(/\s+/, "")%>">
+        <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2><%=cocktail.name%></h2>
+            <p>Very cool cocktail, the best</p>
+          </div>
+        <%=link_to 'Delete', cocktail_path(cocktail), class: 'btn btn-danger card-delete',
+          method: :delete,
+          data: { confirm: "Are you sure?" }%>
+        <%=link_to '', cocktail_path(cocktail), class: 'card-link' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

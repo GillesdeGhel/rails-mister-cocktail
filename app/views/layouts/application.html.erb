@@ -13,8 +13,35 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="navbar-wagon">
+      <!-- Logo -->
+      <a href="/cocktails" class="navbar-wagon-brand navbar-wagon-link">
+        Our cocktails
+      </a>
 
+      <!-- Right Navigation -->
+      <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+        <a href="../cocktails/new" class="navbar-wagon-item navbar-wagon-link">Add cocktail</a>
+        <form action="search">
+          <div class="topnav">
+            <input type="search" name="tag" placeholder="Search..">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Dropdown appearing on mobile only -->
+      <div class="navbar-wagon-item hidden-md hidden-lg">
+        <div class="dropdown">
+          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+            <li><a href="/cocktails/new">Add cocktail</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+        <%= yield %>
     <%= javascript_include_tag "application" %> <!-- from app/assets/javascripts/application.js -->
     <%= javascript_pack_tag "application" %>
   </body>

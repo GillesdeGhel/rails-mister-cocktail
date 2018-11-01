@@ -1,0 +1,4 @@
+<h2>We found <%= @cocktails.size%> results </h2>
+    <% @cocktails.each do |cocktail| %>
+    <h3> <%=cocktail.name %> </h3>
+    <% end  %>

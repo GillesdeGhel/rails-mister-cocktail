@@ -1,0 +1,2 @@
+module CocktailssHelper
+end

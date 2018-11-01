@@ -13,3 +13,13 @@
 @import "layouts/index";
 @import "components/index";
 @import "pages/index";
+@import "cocktails";
+
+#search {
+  padding: 8px;
+  box-shadow: none;
+}
+
+li {
+  list-style: none;
+}
