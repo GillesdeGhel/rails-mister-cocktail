@@ -9,3 +9,17 @@
 
 console.log('Hello World from Webpacker')
 import 'bootstrap';
+
+console.log("hi")
+
+function loadDynamicBannerText() {
+ new Typed (document.getElementById('#title'), {
+  strings: ["Cockatils Tales", "Find your Happiness"],
+  typeSpeed: 30,
+  loop: true
+  });
+}
+
+export { loadDynamicBannerText };
+loadDynamicBannerText();
+
