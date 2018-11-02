@@ -1,39 +1,80 @@
-<div class="banner <%=@cocktail.name.gsub(/\s+/, "")%>">
+<div class="show">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path @cocktail.photo, height: 400, width: 400 %>')">
   <div class="banner-content">
     <h1>  <%= @cocktail.name %> </h1>
+    <h1> <% @average.times do%>
+      <i class='fas fa-star'></i>
+      <% end%>
+    </h1>
   </div>
-  <div class="banner-gradient" id="little-banner"></div>
+  <!-- <div class="banner-gradient" id="little-banner"></div> -->
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-xs-6">
-      <div class="description">
+    <div class="col-xs-8 col-xs-offset-2">
+      <div class="cocktail-description">
         <h3>Description</h3>
         <p>
          <%= @cocktail.description  %>
         </p>
       </div>
     </div>
+  </div>
 
-    <div class='col-xs-6'>
-      <div class="card">
 
-        <div class="card-description">
-          <ul>
-            <% @cocktail.doses.each do |dose| %>
-            <li>
-              <h2><strong><%= dose.ingredient.name %></strong> -- <%= dose.description %>
-              <%= link_to 'Delete the dose', cocktail_dose_path(@cocktail, dose),
+  <div class="row">
+    <div class='col-xs-4 col-xs-offset-2'>
+      <div class="dose-form">
+        <h3> Add Doses </h3>
+        <%= simple_form_for [@cocktail, @dose] do |f| %>
+        <%= f.association :ingredient, collection: @ingredients, include_blank: false %>
+        <%= f.input :description %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end  %>
+      </div>
+    </div>
+      <div class='col-xs-4'>
+        <div class="doses-list">
+        <h3>Ingredients</h3>
+        <ul>
+          <% @cocktail.doses.each do |dose| %>
+            <li >
+              <h4><strong><%= dose.ingredient.name %></strong> -- <%= dose.description %>
+              <%= link_to ("<i class='far fa-trash-alt'></i>").html_safe, cocktail_dose_path(@cocktail, dose),
                 method: :delete,
-                data: { confirm: "Are you sure?" } %></h2>
+                data: { confirm: "Are you sure?" } %></h4>
             </li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="card-delete">
-          <%= link_to 'Add a dose', new_cocktail_dose_path(@cocktail), class: 'btn btn-primary' %>
-        </div>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class='col-xs-4 col-xs-offset-2'>
+      <div class='doses-list'>
+        <h3>Ratings</h3>
+      <ul >
+        <% @cocktail.reviews.each do |review|  %>
+        <li>
+          <h4><strong><% review.rating.times do%>
+      <i class='fas fa-star'></i>
+      <% end%></strong> -- <%= review.content %>
+          </h4>
+        </li>
+        <% end %>
+      </ul>
+      </div>
+    </div>
+    <div class='col-xs-4'>
+      <div class="dose-form">
+        <h3> Your Rating </h3>
+        <%= simple_form_for [@cocktail, @review] do |f| %>
+        <%= f.input :content%>
+        <%= f.input :rating %>
+        <%= f.button :submit, class: 'btn btn-primary' %>
+        <% end  %>
       </div>
     </div>
   </div>

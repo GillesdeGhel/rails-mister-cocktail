@@ -2,19 +2,19 @@
 
 <div class="banner" id='home'>
   <div class="banner-content">
-  <h1>Find your Cocktail</h1>
+  <h1>Cocktails Tales</h1>
   <h2>  <form action="search">
-      <input type="" id="search" name="tag" placeholder="Search..">
+      <input type="text" id="search" name="tag" placeholder="Find your Cocktail">
   </form></h2>
   </div>
   <div class="banner-gradient"></div>
 </div>
 <div class="container">
   <div class="row">
-    <h1>Find your Cocktail</h1>
     <% @cocktails.each do |cocktail| %>
     <div class="col-xs-12 col-sm-4">
-      <div class="card <%=cocktail.name.gsub(/\s+/, "")%>">
+      <div class="card"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
         <div class="card-category">Popular</div>
           <div class="card-description">
             <h2><%=cocktail.name%></h2>

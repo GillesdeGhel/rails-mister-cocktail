@@ -11,12 +11,23 @@ class CocktailsController < ApplicationController
   end
 
   def show
+    @ingredients = Ingredient.all
+    @dose = Dose.new
+    @review = Review.new
+    total = @cocktail.reviews.map do
+      |review| review.rating
+    end
+    if total.size == 0
+      @average = 0
+    else
+      @average = total.sum / total.size
+    end
   end
 
   def create
     @cocktail = Cocktail.new(cocktail_params)
     if @cocktail.save
-      redirect_to new_cocktail_dose_path(@cocktail)
+      redirect_to cocktail_path(@cocktail)
     else
       render :new
     end
@@ -42,10 +53,11 @@ class CocktailsController < ApplicationController
     @cocktails = Cocktail.where("name LIKE '%#{params[:tag]}%'")
   end
 
+
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :description)
+    params.require(:cocktail).permit(:name, :description, :photo)
   end
 
   def set_cocktail

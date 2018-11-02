@@ -1,4 +1,22 @@
-<h2>We found <%= @cocktails.size%> results </h2>
+
+<div class="container">
+  <div class="row">
+    <h2>We found <%= @cocktails.size%> results </h2>
     <% @cocktails.each do |cocktail| %>
-    <h3> <%=cocktail.name %> </h3>
-    <% end  %>
+    <div class="col-xs-12 col-sm-4">
+      <div class="card"  style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)),
+         url('<%= cl_image_path cocktail.photo, height: 300, width: 400, crop: :fill %>')">
+        <div class="card-category">Popular</div>
+          <div class="card-description">
+            <h2><%=cocktail.name%></h2>
+            <p>Very cool cocktail, the best</p>
+          </div>
+        <%=link_to 'Delete', cocktail_path(cocktail), class: 'btn btn-danger card-delete',
+          method: :delete,
+          data: { confirm: "Are you sure?" }%>
+        <%=link_to '', cocktail_path(cocktail), class: 'card-link' %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
