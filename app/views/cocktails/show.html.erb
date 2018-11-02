@@ -25,7 +25,7 @@
 
 
   <div class="row">
-    <div class='col-xs-4 col-xs-offset-2'>
+    <div class='col-md-4 col-md-offset-2'>
       <div class="dose-form">
         <h3> Add Doses </h3>
         <%= simple_form_for [@cocktail, @dose] do |f| %>
@@ -35,7 +35,7 @@
         <% end  %>
       </div>
     </div>
-      <div class='col-xs-4'>
+      <div class='col-md-4'>
         <div class="doses-list">
         <h3>Ingredients</h3>
         <ul>
@@ -52,7 +52,7 @@
     </div>
   </div>
   <div class="row">
-    <div class='col-xs-4 col-xs-offset-2'>
+    <div class='col-md-4 col-xs-offset-2'>
       <div class='doses-list'>
         <h3>Ratings</h3>
       <ul >
@@ -67,7 +67,7 @@
       </ul>
       </div>
     </div>
-    <div class='col-xs-4'>
+    <div class='col-md-4'>
       <div class="dose-form">
         <h3> Your Rating </h3>
         <%= simple_form_for [@cocktail, @review] do |f| %>
